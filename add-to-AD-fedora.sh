@@ -9,11 +9,12 @@ echo "Enter the IP of the Active Directory domain controller"
 read dc
 
 #Get the interface name
-connection=$(nmcli -g GENERAL.CONNECTION device show $(nmcli device status | awk '/ethernet/ {print $1; exit}') | head -n1)
+### making a ugly fix to get it to run untill I figure out how to get the connection name
+#connection=$(nmcli -g GENERAL.CONNECTION device show $(nmcli device status | awk '/ethernet/ {print $1; exit}') | head -n1)
 
 #Set DNS
-nmcli connection modify $connection ipv4.dns $dc
-nmcli connection up $connectiom
+nmcli connection modify Wired connection 1 ipv4.dns $dc
+nmcli connection up Wired connection 1
 
 
 #Install the necessary packages
