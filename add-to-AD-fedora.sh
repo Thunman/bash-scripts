@@ -25,4 +25,4 @@ dnf install -y realmd sssd oddjob oddjob-mkhomedir adcli samba-common-tools
 
 #Join the domain
 realm discover $domain
-realm join $domain -u $admin
+realm join $domain -U $admin
