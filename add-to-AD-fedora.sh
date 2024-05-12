@@ -9,11 +9,11 @@ echo "Enter the IP of the Active Directory domain controller"
 read dc
 
 #Get the interface name
-interface=$(ip -br link | grep -oP '^\K[^@]+' | grep -m1 -E 'eth|en')
+connection=$(nmcli -g GENERAL.CONNECTION device show $(nmcli device status | awk '/ethernet/ {print $1; exit}') | head -n1)
 
 #Set DNS
-nmcli connection modify $interface ipv4.dns $dc
-nmcli connection up $interface
+nmcli connection modify $connection ipv4.dns $dc
+nmcli connection up $connectiom
 
 
 #Install the necessary packages
