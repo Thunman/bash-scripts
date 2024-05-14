@@ -13,7 +13,7 @@ read ip_dc1
 echo "domain $domain_name" | tee /etc/resolv.conf
 echo "search $domain_name" | tee -a /etc/resolv.conf
 echo "nameserver $ip_dc1" | tee  -a /etc/resolv.conf
-
+systemctl restart networking
 #Install needed packages
 apt -y install realmd \
 sssd \
