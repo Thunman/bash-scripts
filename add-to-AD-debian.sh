@@ -9,6 +9,9 @@ read domain_name
 echo "IP address of Domain Controller 1"
 read ip_dc1
 
+echo "Enter username for a user with admin rights in the domain"
+read admin
+
 #Set DNS
 echo "domain $domain_name" | tee /etc/resolv.conf
 echo "search $domain_name" | tee -a /etc/resolv.conf
@@ -27,7 +30,7 @@ packagekit
 
 #Join Domain
 realm discover $domain_name
-realm join $domain_name
+realm join $domain_name -U $admin
 
 #Create a home dir for AD users when they log in
 echo "session optional pam_mkhomedir.so skel=/etc/skel umask=077" | tee -a /etc/pam.d/common-session >/dev/null
