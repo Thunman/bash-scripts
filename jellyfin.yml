@@ -8,8 +8,8 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
     volumes:
-      - /etc/docker-configs/jellyfin/config:/config 	#path to config
-      - /media/nas:/media/dls 				#path to media
+      - /home/thunman/config-files/jellyfin/config:/config
+      - /media/nas:/media/dls
     ports:
       - 8096:8096
       - 8920:8920 #optional
