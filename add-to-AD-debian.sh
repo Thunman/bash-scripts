@@ -13,6 +13,10 @@ echo "Enter username for a user with admin rights in the domain"
 read admin
 
 #Set DNS
+# Backup the original file
+cp /etc/dhcp/dhclient.conf /etc/dhcp/dhclient.conf.bak
+# Append the DNS configuration
+echo "supersede domain-name-servers $ip_dc1;" >> /etc/dhcp/dhclient.conf
 echo "domain $domain_name" | tee /etc/resolv.conf
 echo "search $domain_name" | tee -a /etc/resolv.conf
 echo "nameserver $ip_dc1" | tee  -a /etc/resolv.conf
